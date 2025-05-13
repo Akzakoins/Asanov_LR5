@@ -5,42 +5,35 @@
 
 #include "Asanov_MathTask.h"
 
-void testGetFirstDigit()
+void testValidSidePositive()
 {
-    ASSERT_EQUAL(1, getFirstDigit(123));
-    ASSERT_EQUAL(9, getFirstDigit(987));
-    ASSERT_EQUAL(4, getFirstDigit(-456));
+    ASSERT(isValidSide(5));
 }
 
-void testGetNthDigitFromRight()
+void testValidSideZero()
 {
-    ASSERT_EQUAL(3, getNthDigitFromRight(123, 0)); // последний
-    ASSERT_EQUAL(2, getNthDigitFromRight(123, 1)); // средний
-    ASSERT_EQUAL(1, getNthDigitFromRight(123, 2)); // первый
+    ASSERT(!isValidSide(0));
 }
 
-void testInvalidThreeDigit()
+void testValidSideNegative()
 {
-    ASSERT(!isValidThreeDigit(99));
-    ASSERT(!isValidThreeDigit(1000));
-    ASSERT(isValidThreeDigit(123));
+    ASSERT(!isValidSide(-10));
 }
 
-void testInvalidDigitPosition()
+void testCalcRectangleArea()
 {
-    ASSERT(!isValidDigitPosition(-1));
-    ASSERT(!isValidDigitPosition(3));
-    ASSERT(isValidDigitPosition(0));
-    ASSERT(isValidDigitPosition(2));
+    ASSERT_EQUAL(20, calcRectangleArea(4, 5));
+    ASSERT_EQUAL(0, calcRectangleArea(0, 10));
+    ASSERT_EQUAL(6, calcRectangleArea(2, 3));
 }
 
 bool runAllTests(int argc, char const *argv[])
 {
     cute::suite s;
-    s.push_back(CUTE(testGetFirstDigit));
-    s.push_back(CUTE(testGetNthDigitFromRight));
-    s.push_back(CUTE(testInvalidThreeDigit));
-    s.push_back(CUTE(testInvalidDigitPosition));
+    s.push_back(CUTE(testValidSidePositive));
+    s.push_back(CUTE(testValidSideZero));
+    s.push_back(CUTE(testValidSideNegative));
+    s.push_back(CUTE(testCalcRectangleArea));
 
     cute::xml_file_opener xmlfile(argc, argv);
     cute::xml_listener<cute::ide_listener<>> listener(xmlfile.out);

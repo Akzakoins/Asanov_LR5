@@ -1,30 +1,31 @@
-#ifndef Asanov_MathTask_H
-#define Asanov_MathTask_H
+#ifndef ASANOV_MATH_TASK_H
+#define ASANOV_MATH_TASK_H
 
-int getFirstDigit(int number)
+#include <iostream>
+
+// Контроль ввода (сторона должна быть > 0)
+bool isValidSide(int side)
 {
-    number = abs(number);
-    while (number >= 10)
-        number /= 10;
-    return number;
+    return side > 0;
 }
 
-int getNthDigitFromRight(int number, int N)
+// Ввод стороны прямоугольника
+int inputSide()
 {
-    number = abs(number);
-    for (int i = 0; i < N; ++i)
-        number /= 10;
-    return number % 10;
+    int side;
+    std::cin >> side;
+    while (!isValidSide(side))
+    {
+        std::cout << "Ошибка: сторона должна быть положительной. Повторите ввод: ";
+        std::cin >> side;
+    }
+    return side;
 }
 
-bool isValidThreeDigit(int number)
+// Вычисление площади
+int calcRectangleArea(int a, int b)
 {
-    return abs(number) >= 100 && abs(number) <= 999;
-}
-
-bool isValidDigitPosition(int N)
-{
-    return N >= 0 && N <= 2;
+    return a * b;
 }
 
 #endif

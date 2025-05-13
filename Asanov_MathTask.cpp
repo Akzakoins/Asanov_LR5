@@ -1,30 +1,16 @@
 #include <iostream>
 #include "Asanov_MathTask.h"
-using namespace std;
 
 int main()
 {
-    int X, N;
-    cout << "Введите трехзначное число X: ";
-    cin >> X;
+    std::cout << "Введите длину первой стороны: ";
+    int a = inputSide();
 
-    if (!isValidThreeDigit(X))
-    {
-        cout << "Ошибка: Число не является трехзначным!" << endl;
-        return 1;
-    }
+    std::cout << "Введите длину второй стороны: ";
+    int b = inputSide();
 
-    cout << "Введите номер цифры N (0 — последняя, 1 — средняя, 2 — первая): ";
-    cin >> N;
-
-    if (!isValidDigitPosition(N))
-    {
-        cout << "Ошибка: N должно быть от 0 до 2" << endl;
-        return 1;
-    }
-
-    cout << "Первая цифра числа X: " << getFirstDigit(X) << endl;
-    cout << N << "-я цифра числа X справа налево: " << getNthDigitFromRight(X, N) << endl;
+    int area = calcRectangleArea(a, b);
+    std::cout << "Площадь прямоугольника: " << area << std::endl;
 
     return 0;
 }
